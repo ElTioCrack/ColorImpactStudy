@@ -1,0 +1,248 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\DAL\\DAL.csproj": {}
+  },
+  "projects": {
+    "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Contracts\\Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Contracts\\Contracts.csproj",
+        "projectName": "Contracts",
+        "projectPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Contracts\\Contracts.csproj",
+        "packagesPath": "C:\\Users\\Ilian\\.nuget\\packages\\",
+        "outputPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ilian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\DAL\\DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\DAL\\DAL.csproj",
+        "projectName": "DAL",
+        "projectPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\Ilian\\.nuget\\packages\\",
+        "outputPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ilian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Contracts\\Contracts.csproj": {
+                "projectPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Contracts\\Contracts.csproj"
+              },
+              "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Entities\\Entities.csproj": {
+                "projectPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Entities\\Entities.csproj"
+              },
+              "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Utilities\\Utilities.csproj": {
+                "projectPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Utilities\\Utilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Firebase.Database": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Entities\\Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Entities\\Entities.csproj",
+        "projectName": "Entities",
+        "projectPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\Ilian\\.nuget\\packages\\",
+        "outputPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ilian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Utilities\\Utilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Utilities\\Utilities.csproj",
+        "projectName": "Utilities",
+        "projectPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Utilities\\Utilities.csproj",
+        "packagesPath": "C:\\Users\\Ilian\\.nuget\\packages\\",
+        "outputPath": "D:\\Univalle\\6to Semestre\\Tecnologias Emergentes\\2023-10-07\\ColorImpactStudy\\Utilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ilian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
