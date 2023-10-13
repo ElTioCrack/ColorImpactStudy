@@ -15,7 +15,8 @@ function App() {
   const [country, setCountry] = useState("");
   const [userIpAddress, setUserIpAddress] = useState("");
 
-  const apiUrl = "https://localhost:7195";
+  // const apiUrl = "https://localhost:7195";
+  const apiUrl = "http://univalleinfo-001-site1.htempurl.com";
 
   useEffect(() => {
     // fetchPhrase(`${apiUrl}/api/phrase/getphrase`);
@@ -137,7 +138,7 @@ function App() {
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime
           suscipit molestiae modi distinctio necessitatibus at, ad eligendi
           eveniet enim laboriosam doloribus autem voluptas incidunt aliquid,
-          doloremque quae? Unde, culpa error?
+          doloremque quae? Unde, culpa error? <br />
           {phrase}
         </p>
       </div>

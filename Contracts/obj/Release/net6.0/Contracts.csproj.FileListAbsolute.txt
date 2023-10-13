@@ -1,0 +1,11 @@
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\bin\Release\net6.0\Contracts.deps.json
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\bin\Release\net6.0\Contracts.dll
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\bin\Release\net6.0\Contracts.pdb
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\obj\Release\net6.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\obj\Release\net6.0\Contracts.AssemblyInfoInputs.cache
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\obj\Release\net6.0\Contracts.AssemblyInfo.cs
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\obj\Release\net6.0\Contracts.csproj.CoreCompileInputs.cache
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\obj\Release\net6.0\Contracts.dll
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\obj\Release\net6.0\refint\Contracts.dll
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\obj\Release\net6.0\Contracts.pdb
+D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\Contracts\obj\Release\net6.0\ref\Contracts.dll

@@ -1,2 +1,1 @@
-D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\reactapp\obj\Debug\reactapp.esproj.CoreCompileInputs.cache
 E:\Il\TE\2023-10-11\ColorImpactStudy\reactapp\obj\Debug\reactapp.esproj.CoreCompileInputs.cache
