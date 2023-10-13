@@ -5,7 +5,7 @@
         /// <summary>
         /// Un identificador único para cada registro
         /// </summary>
-        public int Id { get; set; }
+        public object Id { get; set; }
 
         /// <summary>
         /// La frase proporcionada por el usuario
@@ -32,10 +32,15 @@
         /// </summary>
         public int ReactionTime { get; set; }
 
-        /// <summary>
-        /// La ciudad del usuario.
-        /// </summary>
-        public string City { get; set; }
+		/// <summary>
+		/// Indica si al usuario le gusta o no (true = le gusta, false = no le gusta).
+		/// </summary>
+		public bool Reaction { get; set; }
+
+		/// <summary>
+		/// La ciudad del usuario.
+		/// </summary>
+		public string City { get; set; }
 
         /// <summary>
         /// El país del usuario.

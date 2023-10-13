@@ -15,7 +15,22 @@ namespace DAL.DbContext
         {
             if (FirebaseApp.DefaultInstance == null)
             {
-                var credential = GoogleCredential.FromFile(pathToCredentialsFile);
+				string credentialsPath = Path.Combine(Directory.GetCurrentDirectory(), "colorlmpactstudy-firebase-adminsdk-zr64q-7372257016.json");
+				
+                string credentialsFile;
+
+
+				if (File.Exists(credentialsPath))
+				{
+					credentialsFile = credentialsPath;
+				}
+				else
+				{
+					credentialsFile = pathToCredentialsFile;
+				}
+
+
+				var credential = GoogleCredential.FromFile(credentialsFile);
                 FirebaseApp.Create(new AppOptions
                 {
                     Credential = credential,

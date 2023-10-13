@@ -5,101 +5,78 @@ import CustomButton from "./components/CustomButton";
 
 function App() {
   const [id, setId] = useState(0);
-  const [phrase, setPhrase] = useState("");
+  const [phrase, setPhrase] = useState("phrase");
   const [backgroundColor, setBackgroundColor] = useState("");
   const [textColor, setTextColor] = useState("");
   const [accessTime, setAccessTime] = useState(new Date());
   const [reactionTime, setReactionTime] = useState(0);
+  const [reaction, setReaction] = useState(false);
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [userIpAddress, setUserIpAddress] = useState("");
 
+  const apiUrl = "https://localhost:7195";
+
   useEffect(() => {
-    const apiUrl = "https://localhost:7195";
-
-    fetchColorAndSetBackground(`${apiUrl}/api/colors/getrandomrainbowcolors`)
-
-    /* -------------------------------------------------------------------------- */
-
-    // fetchColorAndSetBackground(`${apiUrl}/api/colors/generate`);
-
-    // fetchColorAndSetTextColor(`${apiUrl}/api/colors/generate`);
+    // fetchPhrase(`${apiUrl}/api/phrase/getphrase`);
+    fetchColors(`${apiUrl}/api/colors/getrandomrainbowcolors`);
+    setAccessTime(new Date());
+    fetchUserLocation(`${apiUrl}/api/geolocation/userlocation`);
 
     return () => {
       console.log("🚀 ~ file: App.jsx ~ return ~ cleanup");
     };
   }, []);
 
-  const fetchColorAndSetBackground = (url) => {
+  const fetchPhrase = (url) => {
     fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("La solicitud no fue exitosa.");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data)
-      setBackgroundColor(data.backgroundColor);
-      setTextColor(data.textColor);
-      // console.log(backgroundColor)
-      // console.log(TextColor)
-    })
-    .catch((error) => {
-      console.error(`Error in ${url} request:`, error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("La solicitud no fue exitosa.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPhrase(data.phrase);
+      })
+      .catch((error) => {
+        console.error(`Error in ${url} request:`, error);
+      });
   };
 
-  const fetchColorAndSetBackground_1 = (url) => {
-    // Realiza la solicitud GET para el color de fondo
-    fetch(apiUrl)
+  const fetchColors = (url) => {
+    fetch(url)
       .then((response) => {
         if (!response.ok) {
           throw new Error("La solicitud no fue exitosa.");
         }
-        return response.json(); // Parsea la respuesta JSON
+        return response.json();
       })
       .then((data) => {
-        // Imprime los valores recibidos en la consola
-        console.log(`Color for ${url}:`, data);
-  
-        // Convierte los valores en una cadena RGB
-        const backgroundColor = `rgb(${data.red}, ${data.green}, ${data.blue})`;
-  
-        // Aquí puedes aplicar la lógica que necesites con el color
-        // Por ejemplo, configurar el color de fondo en tu componente.
-        setBackgroundColor(backgroundColor);
+        setBackgroundColor(data.backgroundColor);
+        setTextColor(data.textColor);
       })
       .catch((error) => {
         console.error(`Error in ${url} request:`, error);
       });
   };
-  
-  const fetchColorAndSetTextColor_1 = (url) => {
-  
-    // Realiza la solicitud GET para el color del texto
-    fetch(apiUrl)
+  const fetchUserLocation = (url) => {
+    fetch(url)
       .then((response) => {
         if (!response.ok) {
           throw new Error("La solicitud no fue exitosa.");
         }
-        return response.json(); // Parsea la respuesta JSON
+        return response.json();
       })
       .then((data) => {
-        // Imprime los valores recibidos en la consola
-        console.log(`Text color for ${url}:`, data);
-  
-        // Convierte los valores en una cadena RGB
-        const textColor = `rgb(${data.red}, ${data.green}, ${data.blue})`;
-  
-        // Aplica la lógica que necesites con el color de texto.
-        setTextColor(textColor);
+        setCity(data.city);
+        setCountry(data.country);
+        setUserIpAddress(data.ip);
       })
       .catch((error) => {
         console.error(`Error in ${url} request:`, error);
       });
   };
-  
 
   const mainStyle = {
     "--background-color": backgroundColor,
@@ -109,9 +86,48 @@ function App() {
     "--text-color": textColor,
   };
 
-  const handleClick = () => {
-    // Esta función se ejecutará cuando se haga clic en un botón
-    console.log("Hola"); // Imprime "Hola" en la consola
+  const handleClick = (isLike) => {
+    const formattedAccessTime = currentTime.toISOString();
+    const currentTime = new Date();
+    const timeDifference = currentTime - accessTime;
+    setReactionTime(timeDifference);
+    setReaction(isLike);
+    setAccessTime(formattedAccessTime);
+    const userData = {
+      // id,
+      phrase,
+      backgroundColor,
+      textColor,
+      accessTime,
+      reactionTime,
+      reaction,
+      city,
+      country,
+      userIpAddress,
+    };
+    console.log(userData);
+
+    // Realiza una solicitud POST a la API para enviar el objeto userData
+    fetch(`${apiUrl}/api/UserData`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("La solicitud no fue exitosa.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Maneja la respuesta de la API si es necesario
+        console.log("Respuesta de la API:", data);
+      })
+      .catch((error) => {
+        console.error("Error al enviar los datos a la API:", error);
+      });
   };
 
   return (
@@ -122,18 +138,19 @@ function App() {
           suscipit molestiae modi distinctio necessitatibus at, ad eligendi
           eveniet enim laboriosam doloribus autem voluptas incidunt aliquid,
           doloremque quae? Unde, culpa error?
+          {phrase}
         </p>
       </div>
       <div className="buttons">
         <CustomButton
           text="Like"
           icon={faHeart}
-          onClick={handleClick}
+          onClick={() => handleClick(true)}
         />
         <CustomButton
           text="Dislike"
           icon={faHeartCrack}
-          onClick={() => alert("Haz hecho clic")}
+          onClick={() => handleClick(false)}
         />
       </div>
     </>
