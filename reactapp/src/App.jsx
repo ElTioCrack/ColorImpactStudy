@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 import CustomButton from "./components/CustomButton";
 
 function App() {
+  // Estados iniciales
   const [id, setId] = useState(0);
   const [phrase, setPhrase] = useState("phrase");
-  const [backgroundColor, setBackgroundColor] = useState("");
-  const [textColor, setTextColor] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState("black");
+  const [textColor, setTextColor] = useState("white");
   const [accessTime, setAccessTime] = useState(new Date());
   const [reactionTime, setReactionTime] = useState(0);
   const [reaction, setReaction] = useState(false);
@@ -15,8 +15,9 @@ function App() {
   const [country, setCountry] = useState("");
   const [userIpAddress, setUserIpAddress] = useState("");
 
+  // URL de la API
   // const apiUrl = "https://localhost:7195";
-  const apiUrl = "http://univalleinfo-001-site1.htempurl.com";
+  const apiUrl = "https://univalleinfo-001-site1.htempurl.com";
 
   useEffect(() => {
     // fetchPhrase(`${apiUrl}/api/phrase/getphrase`);
@@ -45,6 +46,7 @@ function App() {
       });
   };
 
+  // Función para cargar colores desde la API
   const fetchColors = (url) => {
     fetch(url)
       .then((response) => {
@@ -61,6 +63,8 @@ function App() {
         console.error(`Error in ${url} request:`, error);
       });
   };
+
+  // Función para cargar la ubicación del usuario desde la API
   const fetchUserLocation = (url) => {
     fetch(url)
       .then((response) => {
@@ -79,23 +83,20 @@ function App() {
       });
   };
 
-  const mainStyle = {
-    "--background-color": backgroundColor,
-  };
-
-  const paragraphStyle = {
-    "--text-color": textColor,
-  };
-
+  // Maneja el clic en los botones de reacción
   const handleClick = (isLike) => {
-    const formattedAccessTime = currentTime.toISOString();
     const currentTime = new Date();
+    const formattedAccessTime = currentTime.toISOString();
     const timeDifference = currentTime - accessTime;
-    setReactionTime(timeDifference);
+
+    // Actualiza los estados de reacción y tiempo
     setReaction(isLike);
+    setReactionTime(timeDifference);
     setAccessTime(formattedAccessTime);
+
+    // Crea un objeto userData con los datos
     const userData = {
-      // id,
+      id,
       phrase,
       backgroundColor,
       textColor,
@@ -133,26 +134,28 @@ function App() {
 
   return (
     <>
-      <div className="main" style={mainStyle}>
-        <p style={paragraphStyle}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime
-          suscipit molestiae modi distinctio necessitatibus at, ad eligendi
-          eveniet enim laboriosam doloribus autem voluptas incidunt aliquid,
-          doloremque quae? Unde, culpa error? <br />
-          {phrase}
-        </p>
-      </div>
-      <div className="buttons">
-        <CustomButton
-          text="Like"
-          icon={faHeart}
-          onClick={() => handleClick(true)}
-        />
-        <CustomButton
-          text="Dislike"
-          icon={faHeartCrack}
-          onClick={() => handleClick(false)}
-        />
+      <div className="main" style={{"--background-color": backgroundColor}}>
+        <div className="phrase">
+          <p style={{"--text-color": textColor}}>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime
+            suscipit molestiae modi distinctio necessitatibus at, ad eligendi
+            eveniet enim laboriosam doloribus autem voluptas incidunt aliquid,
+            doloremque quae? Unde, culpa error?<br />
+            {phrase}
+          </p>
+        </div>
+        <div className="buttons">
+          <CustomButton
+            text="Like"
+            icon={faHeart}
+            onClick={() => handleClick(true)}
+          />
+          <CustomButton
+            text="Dislike"
+            icon={faHeartCrack}
+            onClick={() => handleClick(false)}
+          />
+        </div>
       </div>
     </>
   );

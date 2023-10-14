@@ -1,6 +1,10 @@
-﻿namespace Entities
+﻿using System.Runtime.Serialization;
+
+namespace Entities
 {
-    public class UserData
+	//[DataContract]
+	//[Serializable]
+	public class UserData
     {
         /// <summary>
         /// Un identificador único para cada registro
