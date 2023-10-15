@@ -1,9 +1,7 @@
-﻿using FirebaseAdmin;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
+using FirebaseAdmin;
 using Firebase.Database;
 using Firebase.Database.Query;
-using System.Collections.Generic;
-using System;
 
 namespace DAL.DbContext
 {
