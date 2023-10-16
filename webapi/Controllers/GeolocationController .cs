@@ -16,7 +16,7 @@ namespace webapi.Controllers
 			{
 				// Obtiene la dirección IP del usuario desde la solicitud
 				string userIpAddress = HttpContext.Connection.RemoteIpAddress.ToString();
-				//userIpAddress = "177.222.61.200";
+				userIpAddress = "177.222.61.200";
 
 				// Consulta el servicio de ipinfo.io para obtener información de geolocalización
 				string apiUrl = $"https://ipinfo.io/{userIpAddress}/json";

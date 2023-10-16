@@ -32,6 +32,8 @@ namespace BLL.Services
 		{
 			ValidateUserData(userData);
 
+			userData.AccessTime = userData.AccessTime.AddHours(-4);
+
 			return await _userDataRepository.AddUserDataAsync(userData);
 		}
 

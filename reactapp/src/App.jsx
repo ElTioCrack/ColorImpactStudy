@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { faHeart, faHeartCrack } from "@fortawesome/free-solid-svg-icons";
-import CustomButton from "./components/CustomButton";
+import { useState, useEffect } from "react";
+/*import { faHeart, faHeartCrack } from "@fortawesome/free-solid-svg-icons";*/
+import { CustomButton, CustomButton2 } from "./components/CustomButton";
 
 function App() {
   // Estados iniciales
-  const [id, setId] = useState(0);
-  const [phrase, setPhrase] = useState("phrase");
+  const [id] = useState(0);
+  const [phrase] = useState("phrase");
   const [backgroundColor, setBackgroundColor] = useState("black");
   const [textColor, setTextColor] = useState("white");
   const [accessTime, setAccessTime] = useState(new Date());
@@ -19,6 +19,8 @@ function App() {
   // const apiUrl = "https://localhost:7195";
   const apiUrl = "https://univalleinfo-001-site1.htempurl.com";
 
+  //PRUBA HORA
+
   useEffect(() => {
     // fetchPhrase(`${apiUrl}/api/phrase/getphrase`);
     fetchColors(`${apiUrl}/api/colors/getrandomrainbowcolors`);
@@ -30,21 +32,21 @@ function App() {
     };
   }, []);
 
-  const fetchPhrase = (url) => {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("La solicitud no fue exitosa.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setPhrase(data.phrase);
-      })
-      .catch((error) => {
-        console.error(`Error in ${url} request:`, error);
-      });
-  };
+  //const fetchPhrase = (url) => {
+  //  fetch(url)
+  //    .then((response) => {
+  //      if (!response.ok) {
+  //        throw new Error("La solicitud no fue exitosa.");
+  //      }
+  //      return response.json();
+  //    })
+  //    .then((data) => {
+  //      setPhrase(data.phrase);
+  //    })
+  //    .catch((error) => {
+  //      console.error(`Error in ${url} request:`, error);
+  //    });
+  //};
 
   // Función para cargar colores desde la API
   const fetchColors = (url) => {
@@ -86,13 +88,13 @@ function App() {
   // Maneja el clic en los botones de reacción
   const handleClick = (isLike) => {
     const currentTime = new Date();
-    const formattedAccessTime = currentTime.toISOString();
     const timeDifference = currentTime - accessTime;
+    //const formattedAccessTime = accessTime.toISOString();
 
     // Actualiza los estados de reacción y tiempo
     setReaction(isLike);
     setReactionTime(timeDifference);
-    setAccessTime(formattedAccessTime);
+    //setAccessTime(formattedAccessTime);
 
     // Crea un objeto userData con los datos
     const userData = {
@@ -134,27 +136,28 @@ function App() {
 
   return (
     <>
-      <div className="main" style={{"--background-color": backgroundColor}}>
-        <div className="phrase">
-          <p style={{"--text-color": textColor}}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime
-            suscipit molestiae modi distinctio necessitatibus at, ad eligendi
-            eveniet enim laboriosam doloribus autem voluptas incidunt aliquid,
-            doloremque quae? Unde, culpa error?<br />
-            {phrase}
-          </p>
+      <div className="container">
+        <div className="CP-title">
+          <h2>¿Qué opinas de esta frase generáda por una IA?</h2>
         </div>
-        <div className="buttons">
-          <CustomButton
-            text="Like"
-            icon={faHeart}
-            onClick={() => handleClick(true)}
-          />
-          <CustomButton
-            text="Dislike"
-            icon={faHeartCrack}
-            onClick={() => handleClick(false)}
-          />
+        <div className="CP-colorPanel">
+          <div
+            className="CP-colorArea"
+            style={{ "--background-color": backgroundColor }}
+          >
+            <p className="CP-phrase" style={{ "--text-color": textColor }}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat id
+              laudantium ut laboriosam error odit minima maiores quos porro
+              eveniet officia accusamus animi praesentium quis aspernatur
+              repellat fugit quod voluptatem
+              <br />
+              {phrase}
+            </p>
+          </div>
+        </div>
+        <div className="CP-buttons">
+          <CustomButton text="Me Gusta" onClick={() => handleClick(true)} />
+          <CustomButton2 text="No me Gusta" onClick={() => handleClick(true)} />
         </div>
       </div>
     </>
