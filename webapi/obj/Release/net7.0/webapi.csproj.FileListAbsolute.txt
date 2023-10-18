@@ -18,7 +18,6 @@ D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\weba
 D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\webapi\bin\Release\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\webapi\bin\Release\net7.0\Microsoft.OpenApi.dll
 D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\webapi\bin\Release\net7.0\Newtonsoft.Json.dll
-D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\webapi\bin\Release\net7.0\OpenAI_API.dll
 D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\webapi\bin\Release\net7.0\System.Reactive.Core.dll
 D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\webapi\bin\Release\net7.0\System.Reactive.Interfaces.dll
 D:\Univalle\6to Semestre\Tecnologias Emergentes\2023-10-07\ColorImpactStudy\webapi\bin\Release\net7.0\System.Reactive.Linq.dll

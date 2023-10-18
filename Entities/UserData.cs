@@ -2,24 +2,32 @@
 
 namespace Entities
 {
-	//[DataContract]
-	//[Serializable]
 	public class UserData
     {
         /// <summary>
         /// Un identificador único para cada registro
         /// </summary>
-        public object Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// La frase proporcionada por el usuario
         /// </summary>
         public string Phrase { get; set; }
 
-        /// <summary>
-        /// El color de fondo generado
-        /// </summary>
-        public string BackgroundColor { get; set; }
+		/// <summary>
+		/// Indica si la frase es positiva (true) o negativa (false).
+		/// </summary>
+		public bool IsPhrasePositive { get; set; }
+
+		/// <summary>
+		/// Indica si el usuario tiene conocimiento sobre videojuegos (true) o no (false).
+		/// </summary>
+		public bool KnowsVideoGames { get; set; }
+
+		/// <summary>
+		/// El color de fondo generado
+		/// </summary>
+		public string BackgroundColor { get; set; }
 
         /// <summary>
         /// El color de texto generado
