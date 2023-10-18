@@ -22,8 +22,8 @@ function App() {
   const [visibilityPopUp, setVisibilityPopUp] = useState("flex");
 
   // URL de la API
-  const apiUrl = "https://localhost:7195";
-  // const apiUrl = "https://univalleinfo-001-site1.htempurl.com";
+  // const apiUrl = "https://localhost:7195";
+  const apiUrl = "https://univalleinfo-001-site1.htempurl.com";
 
   //PRUBA HORA
   useEffect(() => {
