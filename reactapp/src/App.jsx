@@ -34,12 +34,14 @@ function App() {
     };
   }, []);
 
+  // Carga los datos iniciales
   const fetchInitialData = () => {
     fetchPhraseData(`${apiUrl}/api/Phrase`);
     fetchColorsData(`${apiUrl}/api/colors/getrandomrainbowcolors`);
     fetchUserLocationData(`${apiUrl}/api/geolocation/userlocation`);
   };
 
+  // Función para cargar la frase desde la API
   const fetchPhraseData = (url) => {
     fetchApiData(url, (data) => {
       setPhrase(data.phrase);
@@ -47,6 +49,7 @@ function App() {
     });
   };
 
+  // Función para cargar los colores desde la API
   const fetchColorsData = (url) => {
     fetchApiData(url, (data) => {
       setBackgroundColor(data.backgroundColor);
@@ -54,6 +57,7 @@ function App() {
     });
   };
 
+  // Función para cargar la ubicación del usuario desde la API
   const fetchUserLocationData = (url) => {
     fetchApiData(url, (data) => {
       setCity(data.city);
@@ -62,6 +66,7 @@ function App() {
     });
   };
 
+  // Función genérica para hacer una solicitud a la API
   const fetchApiData = (url, successCallback) => {
     fetch(url)
       .then((response) => {
@@ -78,6 +83,7 @@ function App() {
       });
   };
 
+  // Verifica si el usuario ya respondió la pregunta de videojuegos
   const checkLocalStorageForVideoGames = () => {
     const storedKnowsVideoGames = localStorage.getItem("knowsVideoGames");
     if (storedKnowsVideoGames !== null) {
@@ -86,6 +92,7 @@ function App() {
     }
   };
 
+  // Maneja la respuesta del usuario a la pregunta de videojuegos
   const handleUserResponseToVideoGames = (knowsVideoGamesAnswer) => {
     setVisibilityPopUp("none");
     setKnowsVideoGames(knowsVideoGamesAnswer);
@@ -93,20 +100,19 @@ function App() {
     console.log(knowsVideoGames);
   };
 
+  // Maneja la reacción del usuario
   const handleReaction = (isLike) => {
     const currentTime = new Date();
     const timeDifference = currentTime - accessTime;
     setReactionTime(timeDifference);
     setReaction(isLike);
+    sendUserDataToApi(`${apiUrl}/api/UserData`);
+    console.log("SendUserData");
+    // Recarga la página después de enviar los datos
+    window.location.reload();
   };
 
-  useEffect(() => {
-    if (reactionTime !== 0) {
-      sendUserDataToApi(`${apiUrl}/api/UserData`);
-      console.log("SendUserData");
-    }
-  }, [reactionTime]);
-
+  // Envía los datos del usuario a la API
   const sendUserDataToApi = (url) => {
     const userData = {
       id,
@@ -123,7 +129,7 @@ function App() {
       userIpAddress,
     };
     console.log(userData);
-
+  
     fetch(url, {
       method: "POST",
       headers: {
@@ -139,6 +145,10 @@ function App() {
       })
       .then((data) => {
         console.log("Respuesta de la API:", data);
+        // Muestra una alerta después de recibir la respuesta de la API
+        alert("Gracias por responder la encuesta.");
+        // Recarga la página
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error al enviar los datos a la API:", error);
