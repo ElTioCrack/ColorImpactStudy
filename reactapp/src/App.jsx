@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+/*import { faHeart, faHeartCrack } from "@fortawesome/free-solid-svg-icons";*/
 import { CustomButton, CustomButton2 } from "./components/CustomButton";
 
 function App() {
@@ -17,57 +18,28 @@ function App() {
   const [city, setCity] = useState("city");
   const [country, setCountry] = useState("country");
   const [userIpAddress, setUserIpAddress] = useState("192.168.1.1");
+
   const [visibilityPopUp, setVisibilityPopUp] = useState("flex");
 
   // URL de la API
-  // const apiUrl = "https://localhost:7195";
-  const apiUrl = "https://univalleinfo-001-site1.htempurl.com";
+  const apiUrl = "https://localhost:7195";
+  // const apiUrl = "https://univalleinfo-001-site1.htempurl.com";
 
+  //PRUBA HORA
   useEffect(() => {
-    // Carga la frase inicial, colores y la ubicación del usuario
-    fetchInitialData();
-    // Verifica si el usuario ya respondió la pregunta de videojuegos
-    checkLocalStorageForVideoGames();
-    // Limpia cuando el componente se desmonta
+    fetchPhrase(`${apiUrl}/api/Phrase`);
+    fetchColors(`${apiUrl}/api/colors/getrandomrainbowcolors`);
+    setAccessTime(new Date());
+    console.log("1 accessTime: " + accessTime);
+    console.log("1 reactionTime: " + reactionTime);
+    fetchUserLocation(`${apiUrl}/api/geolocation/userlocation`);
+    checkLocalStorageForVideoGames()
     return () => {
       console.log("🚀 ~ file: App.jsx ~ return ~ cleanup");
     };
   }, []);
 
-  // Carga los datos iniciales
-  const fetchInitialData = () => {
-    fetchPhraseData(`${apiUrl}/api/Phrase`);
-    fetchColorsData(`${apiUrl}/api/colors/getrandomrainbowcolors`);
-    fetchUserLocationData(`${apiUrl}/api/geolocation/userlocation`);
-  };
-
-  // Función para cargar la frase desde la API
-  const fetchPhraseData = (url) => {
-    fetchApiData(url, (data) => {
-      setPhrase(data.phrase);
-      setIsPhrasePositive(data.isPhrasePositive);
-    });
-  };
-
-  // Función para cargar los colores desde la API
-  const fetchColorsData = (url) => {
-    fetchApiData(url, (data) => {
-      setBackgroundColor(data.backgroundColor);
-      setTextColor(data.textColor);
-    });
-  };
-
-  // Función para cargar la ubicación del usuario desde la API
-  const fetchUserLocationData = (url) => {
-    fetchApiData(url, (data) => {
-      setCity(data.city);
-      setCountry(data.country);
-      setUserIpAddress(data.ip);
-    });
-  };
-
-  // Función genérica para hacer una solicitud a la API
-  const fetchApiData = (url, successCallback) => {
+  const fetchPhrase = (url) => {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -76,10 +48,111 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        successCallback(data);
+        setPhrase(data.phrase);
+        setIsPhrasePositive(data.isPhrasePositive);
       })
       .catch((error) => {
         console.error(`Error in ${url} request:`, error);
+      });
+  };
+
+  // Función para cargar colores desde la API
+  const fetchColors = (url) => {
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("La solicitud no fue exitosa.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBackgroundColor(data.backgroundColor);
+        setTextColor(data.textColor);
+      })
+      .catch((error) => {
+        console.error(`Error in ${url} request:`, error);
+      });
+  };
+
+  // Función para cargar la ubicación del usuario desde la API
+  const fetchUserLocation = (url) => {
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("La solicitud no fue exitosa.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCity(data.city);
+        setCountry(data.country);
+        setUserIpAddress(data.ip);
+      })
+      .catch((error) => {
+        console.error(`Error in ${url} request:`, error);
+      });
+  };
+
+  // Maneja el clic en los botones de reacción
+  const handleClick = (isLike) => {
+    // do{
+    const currentTime = new Date();
+    console.log("2 accessTime: " + accessTime);
+    console.log("2 currentTime: " + currentTime);
+    const timeDifference = currentTime - accessTime;
+    setReactionTime(timeDifference);
+    console.log("3 currentTime: " + timeDifference);
+    setReaction(isLike);
+    
+  };
+
+  useEffect(() => {
+    if (reactionTime !== 0) {
+      SendUserData(`${apiUrl}/api/UserData`);
+      console.log("SendUserData");
+    }
+  }, [reactionTime]);
+
+  const SendUserData = (url) => {
+    // Crea un objeto userData con los datos
+    const userData = {
+      id,
+      phrase,
+      isPhrasePositive,
+      knowsVideoGames,
+      backgroundColor,
+      textColor,
+      accessTime,
+      reactionTime,
+      reaction,
+      city,
+      country,
+      userIpAddress,
+    };
+    console.log(userData);
+
+    // Realiza una solicitud POST a la API para enviar el objeto userData
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("La solicitud no fue exitosa.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Maneja la respuesta de la API si es necesario
+        console.log("Respuesta de la API:", data);
+        alert("Gracias por responder la encuesta.");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error al enviar los datos a la API:", error);
       });
   };
 
@@ -100,67 +173,12 @@ function App() {
     console.log(knowsVideoGames);
   };
 
-  // Maneja la reacción del usuario
-  const handleReaction = (isLike) => {
-    const currentTime = new Date();
-    const timeDifference = currentTime - accessTime;
-    setReactionTime(timeDifference);
-    setReaction(isLike);
-    sendUserDataToApi(`${apiUrl}/api/UserData`);
-    console.log("SendUserData");
-    // Recarga la página después de enviar los datos
-    window.location.reload();
-  };
-
-  // Envía los datos del usuario a la API
-  const sendUserDataToApi = (url) => {
-    const userData = {
-      id,
-      phrase,
-      isPhrasePositive,
-      knowsVideoGames,
-      backgroundColor,
-      textColor,
-      accessTime,
-      reactionTime,
-      reaction,
-      city,
-      country,
-      userIpAddress,
-    };
-    console.log(userData);
-  
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("La solicitud no fue exitosa.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Respuesta de la API:", data);
-        // Muestra una alerta después de recibir la respuesta de la API
-        alert("Gracias por responder la encuesta.");
-        // Recarga la página
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Error al enviar los datos a la API:", error);
-      });
-  };
-
   return (
     <>
-      <div className="CP-containerPopUp" style={{ display: visibilityPopUp }}>
+      <div className="CP-containerPopUp" style={{display: visibilityPopUp}}>
         <div className="popUp">
           <div className="popUpTitle">
-            <p>¿Juegas algún video juego?</p>
+            <p>¿Juegas algun video juego?</p>
           </div>
           <div className="popUpButtons">
             <button className="cerrarPopup" onClick={() => handleUserResponseToVideoGames(true)}>SI</button>
@@ -171,7 +189,7 @@ function App() {
 
       <div className="container">
         <div className="CP-title">
-          <h2>¿Qué opinas de esta frase generada por una IA?</h2>
+          <h2>¿Qué opinas de esta frase generáda por una IA?</h2>
         </div>
         <div className="CP-colorPanel">
           <div
@@ -184,8 +202,8 @@ function App() {
           </div>
         </div>
         <div className="CP-buttons">
-          <CustomButton text="Me Gusta" onClick={() => handleReaction(true)} />
-          <CustomButton2 text="No me Gusta" onClick={() => handleReaction(false)} />
+          <CustomButton text="Me Gusta" onClick={() => handleClick(true)} />
+          <CustomButton2 text="No me Gusta" onClick={() => handleClick(true)} />
         </div>
       </div>
     </>
